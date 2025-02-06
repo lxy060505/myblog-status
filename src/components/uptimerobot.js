@@ -7,9 +7,9 @@ import Link from './link';
 function UptimeRobot({ apikey }) {
 
   const status = {
-    ok: '正常',
-    down: '无法访问',
-    unknow: '未知'
+    ok: 'Operational',
+    down: 'Down',
+    unknow: 'Unknow'
   };
 
   const { CountDays, ShowLink } = window.Config;
@@ -37,7 +37,7 @@ function UptimeRobot({ apikey }) {
           }
           else if (data.uptime <= 0 && data.down.times === 0) {
             status = 'none';
-            text += '无数据';
+            text += 'None';
           }
           else {
             status = 'down';
@@ -47,7 +47,7 @@ function UptimeRobot({ apikey }) {
         })}
       </div>
       <div className='summary'>
-        <span>今天</span>
+        <span>Today</span>
         <span>
           {site.total.times
             ? `最近 ${CountDays} 天故障 ${site.total.times} 次，累计 ${formatDuration(site.total.duration)}，平均可用率 ${site.average}%`
