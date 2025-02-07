@@ -28,7 +28,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git clone --branch main https://${{ secrets.PUSH_TOKEN }}@github.com/lxy060505/MrLau-Status.git target_repo
+        git clone --branch main https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/lxy060505/MrLau-Status.git target_repo
         rsync -av --delete build/ target_repo/
         cd target_repo
         git add .
