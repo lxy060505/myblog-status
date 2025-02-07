@@ -33,7 +33,7 @@ function UptimeRobot({ apikey }) {
           let text = data.date.format('YYYY-MM-DD ');
           if (data.uptime >= 100) {
             status = 'ok';
-            text += `可用率 ${formatNumber(data.uptime)}%`;
+            text += `Availability ${formatNumber(data.uptime)}%`;
           }
           else if (data.uptime <= 0 && data.down.times === 0) {
             status = 'none';
@@ -41,7 +41,7 @@ function UptimeRobot({ apikey }) {
           }
           else {
             status = 'down';
-            text += `故障 ${data.down.times} 次，累计 ${formatDuration(data.down.duration)}，可用率 ${formatNumber(data.uptime)}%`;
+            text += `Failed ${data.down.times} Times Cumulative Failures ${formatDuration(data.down.duration)} Availability ${formatNumber(data.uptime)}%`;
           }
           return (<i key={index} className={status} data-tip={text} />)
         })}
@@ -50,8 +50,8 @@ function UptimeRobot({ apikey }) {
         <span>Today</span>
         <span>
           {site.total.times
-            ? `最近 ${CountDays} 天故障 ${site.total.times} 次，累计 ${formatDuration(site.total.duration)}，平均可用率 ${site.average}%`
-            : `最近 ${CountDays} 天可用率 ${site.average}%`}
+            ? `Over the last ${CountDays} days,there have been ${site.total.times} failures. Cumulative Failures ${formatDuration(site.total.duration)} Availability ${site.average}%`
+            : `Availability for the past ${CountDays} days is ${site.average}%`}
         </span>
         <span>{site.daily[site.daily.length - 1].date.format('YYYY-MM-DD')}</span>
       </div>
