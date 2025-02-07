@@ -21,20 +21,3 @@
 - 将所有文件上传到网站空间
 
 ⚠️ 如果没有修改代码的需求，您不需要 git clone 本项目，只需要下载 Release 的文件包即可。
-
-## 接口代理
-
-对于想自己搭建接口的代理的，可以参考以下 nginx 的配置文件：
-
-```
-server {
-  listen [::]:80;
-  server_name cors.status.org.cn;
-  location / {
-    proxy_ssl_server_name on;
-    proxy_pass https://api.uptimerobot.com/;
-    proxy_hide_header Access-Control-Allow-Origin;
-    add_header Access-Control-Allow-Origin * always;
-  }
-}
-```
